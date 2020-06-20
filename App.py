@@ -4,14 +4,17 @@ import json
 
 
 # inicia todo el programa
-def inicio_programa(departamentos, numero_departamento):
+def inicio_programa(numero_departamento):
     scraper = Scraper()
     escribir = EscribeExcel()
-
+    departamentos = get_departamentos()
     municipios_array = departamentos['departamentos'][numero_departamento]
     for municipio in municipios_array['municipios']:
-        dt = scraper.find_place(lugar='{0}, {1}'.format(municipio, municipios_array['nombre']))
+        nombre_departamento = municipios_array['nombre']
+        find_lugar = "{0}, {1}".format(municipio, nombre_departamento)
+        dt = scraper.find_place(find_lugar)
         # prepara los datos para ser enviados al servidor
+        print(dt)
         try:
             da = {
                 "center": {
@@ -51,5 +54,5 @@ if __name__ == "__main__":
     # escribir = EscribeExcel()
     depatamentos = get_departamentos()
     numero_departamento = 0
-    inicio_programa(departamentos=depatamentos, numero_departamento=numero_departamento)
+    inicio_programa(numero_departamento)
     pass

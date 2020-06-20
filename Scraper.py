@@ -12,18 +12,21 @@ NEW_API_KEY = 'AIzaSyCswu8im_YgIcNBGFmRr-gRVBLqBHwXVxk'
 
 class Scraper(object):
     # busca un lugar y retorna un objeto json con la informacion de ese lugar
-    def find_place(lugar):
+    def find_place(self, lugar):
         resultado_busqueda = requests.get(
             "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input={0}&inputtype=textquery&fields=formatted_address,name,geometry&key={1}".format(
                 lugar, NEW_API_KEY))
-        return json.load(resultado_busqueda)
+        return json.loads(resultado_busqueda.content)
+        pass
 
-    def get_data_stores(coordenadas):
-        # convierte las coordenadas en una string convertidad en json
+    def get_data_stores(self, coordenadas):
+        # convierte las coordenadas en un json
         js = json.dumps(coordenadas)
         response = requests.post(END_POINT, js)
         data_stores = json.loads(response.content)
         return data_stores
+        pass
+
     pass
 
 
