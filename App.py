@@ -53,7 +53,8 @@ if __name__ == "__main__":
     # scraper = Scraper()
     # escribir = EscribeExcel()
     depatamentos = get_departamentos()
-    numero_departamento = 0
-
-    inicio_programa(numero_departamento)
+    for num in range(14):
+        inicio_programa(numero_departamento=num)
+        pass
+    #numero_departamento = 9
     pass
